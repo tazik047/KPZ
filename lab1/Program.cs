@@ -26,7 +26,8 @@ namespace lab1
                 Operation.CloseSqScob,
                 Operation.OpenScob,
                 Operation.GetOp,
-                Operation.OpenSqScob
+                Operation.OpenSqScob,
+                Operation.Separator
             };
             Console.WriteLine(Poliz(Console.ReadLine()));
         }
@@ -51,28 +52,13 @@ namespace lab1
         static string findNum(string t, int pos)
         {
             string res = "";
-            while (pos != t.Length &&  !operation.Any(o=>o.isOperation(t,pos)))
+            while (t[pos]!='#' &&  !operation.Any(o=>o.isOperation(t,pos)))
             {
                 res += t[pos];
                 pos++;
             }
             return res;
         }
-
-       /* private static int Prior(char c)
-        {
-            switch (c)
-            {
-                case '-':
-                case '+':
-                    return 1;
-                case '*':
-                case '/':
-                    return 2;
-                default:
-                    return 0;
-            }
-        }*/
 
         private static string Poliz(string t)
         {
@@ -87,7 +73,7 @@ namespace lab1
                 var temp = findNum(t, pos);
                 if (temp == "")
                 {
-                    if (st.Count == 0 || st.Peek() == Operation.OpenScob)
+                    if (st.Count == 0 || st.Peek() == Operation.OpenScob || st.Peek()==Operation.OpenSqScob)
                         st.Push(getOperation(t, ref pos));
                     else if (t[pos] == '(')
                         st.Push(getOperation(t, ref pos));
@@ -105,20 +91,32 @@ namespace lab1
                         STINDEX = 2;
                         pos++;
                     }
+                    else if (t[pos] == ',')
+                    {
+                        while (st.Peek() != Operation.OpenSqScob)
+                        {
+                            res += " " + st.Pop();
+                            STINDEX++;
+                        }
+                        pos++;
+                    }
                     else if (t[pos] == ']')
                     {
+                        Operation i;
+                        while ((i = st.Pop()) != Operation.OpenSqScob)
+                            res += " " + i;
+                        i = st.Pop();
+                        i.Size = STINDEX;
+                        res += " " + i;
                         pos++;
                     }
                     else
                     {
-                        //var c = st.Peek();
                         var o = getOperation(t, ref pos);
-                        //int p = Prior(c) - Prior(t[pos]);
                         while (st.Peek() >= o)
                             res += " " + st.Pop();
                         st.Push(o);
                     }
-                    //pos++;
                 }
                 else
                 {

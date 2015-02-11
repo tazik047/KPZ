@@ -11,7 +11,7 @@ namespace lab1
     {
         public string Character { get; private set; }
         public int Prioryty { get; private set; }
-        public int Size { get; private set; }
+        public int Size { get; set; }
 
         public Operation(string character, int prioryty, int size)
         {
@@ -115,5 +115,10 @@ namespace lab1
         /// Operation - @
         /// </summary>
         public static readonly Operation GetOp = new Operation("@");
+
+        /// <summary>
+        /// Operation - ,
+        /// </summary>
+        public static readonly Operation Separator = new Operation(",");
     }
 }
