@@ -9,12 +9,25 @@ namespace lab1
 {
     class Program
     {
-        private Dictionary<string, int> operation;
+        private static List<Operation> operation;
 
-        private int STINEX = 0;
+        private static int STINDEX = 0;
 
         static void Main(string[] args)
         {
+            operation = new List<Operation>()
+            {
+                new Operation(":=",0,2),
+                new Operation("+",1,2),
+                new Operation("-",1,2),
+                new Operation("*",2,2),
+                new Operation("/",2,2),
+                Operation.CloseScob,
+                Operation.CloseSqScob,
+                Operation.OpenScob,
+                Operation.GetOp,
+                Operation.OpenSqScob
+            };
             Console.WriteLine(Poliz(Console.ReadLine()));
         }
 
@@ -38,7 +51,7 @@ namespace lab1
         static string findNum(string t, int pos)
         {
             string res = "";
-            while (pos != t.Length &&  char.IsLetterOrDigit(t[pos]))
+            while (pos != t.Length &&  !operation.Any(o=>o.isOperation(t,pos)))
             {
                 res += t[pos];
                 pos++;
@@ -46,7 +59,7 @@ namespace lab1
             return res;
         }
 
-        private static int Prior(char c)
+       /* private static int Prior(char c)
         {
             switch (c)
             {
@@ -59,7 +72,7 @@ namespace lab1
                 default:
                     return 0;
             }
-        }
+        }*/
 
         private static string Poliz(string t)
         {
@@ -68,42 +81,62 @@ namespace lab1
             t = new string(t.Where(c => c != ' ').ToArray());
             int pos = 0;
             string res = "";
-            var st = new Stack<char>();
+            var st = new Stack<Operation>();
             while (t[pos]!='#')
             {
                 var temp = findNum(t, pos);
                 if (temp == "")
                 {
-                    if (st.Count == 0 || st.Peek()=='(')
-                        st.Push(t[pos]);
-                    else if(t[pos] == '(')
-                        st.Push(t[pos]);
+                    if (st.Count == 0 || st.Peek() == Operation.OpenScob)
+                        st.Push(getOperation(t, ref pos));
+                    else if (t[pos] == '(')
+                        st.Push(getOperation(t, ref pos));
                     else if (t[pos] == ')')
                     {
-                        char i;
-                        while ((i = st.Pop()) != '(')
+                        Operation i;
+                        while ((i = st.Pop()) != Operation.OpenScob)
                             res += " " + i;
-
+                        pos++;
+                    }
+                    else if (t[pos] == '[')
+                    {
+                        st.Push(Operation.GetOp);
+                        st.Push(Operation.OpenSqScob);
+                        STINDEX = 2;
+                        pos++;
+                    }
+                    else if (t[pos] == ']')
+                    {
+                        pos++;
                     }
                     else
                     {
-                        char c = st.Peek();
-                        int p = Prior(c) - Prior(t[pos]);
-                        if (p >= 0)
+                        //var c = st.Peek();
+                        var o = getOperation(t, ref pos);
+                        //int p = Prior(c) - Prior(t[pos]);
+                        while (st.Peek() >= o)
                             res += " " + st.Pop();
-                        st.Push(t[pos]);
+                        st.Push(o);
                     }
-                    pos++;
+                    //pos++;
                 }
                 else
                 {
-                    res += " " + temp;
+                    res += (res.Length == 0 ? "" : " ") + temp;
                     pos += temp.Length;
                 }
             }
             while (st.Count() != 0)
                 res += " " + st.Pop();
             return res;
+        }
+
+        private static Operation getOperation(string t,ref int pos)
+        {
+            int tPos = pos;
+            var op = operation.First(o => o.isOperation(t, tPos));
+            pos += op.Character.Length;
+            return op;
         }
     }
 }
