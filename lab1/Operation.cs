@@ -60,7 +60,7 @@ namespace lab1
 
         public static bool operator >=(Operation op1, Operation op2)
         {
-            return op1 > op2 || op1 == op2;
+            return !(op1 < op2);
         }
 
         public static bool operator <=(Operation op1, Operation op2)

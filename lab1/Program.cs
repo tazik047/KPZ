@@ -22,6 +22,7 @@ namespace lab1
                 new Operation("-",1,2),
                 new Operation("*",2,2),
                 new Operation("/",2,2),
+                new Operation("^",3,2),
                 Operation.CloseScob,
                 Operation.CloseSqScob,
                 Operation.OpenScob,
