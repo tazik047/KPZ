@@ -84,7 +84,7 @@ namespace lab1
         {
             return !(op1 == op2);
         }
-
+        
         public override string ToString()
         {
             return Size + Character;

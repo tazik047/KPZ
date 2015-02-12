@@ -1,39 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace lab1
 {
-    class Program
+    static class predicatesPOLIN
     {
         private static List<Operation> operation;
 
         private static int STINDEX = 0;
 
-        static void Main(string[] args)
+        private static List<int> STINDEXES = new List<int>();
+
+        public static void polins() 
         {
             operation = new List<Operation>()
             {
-                new Operation(":=",0,2),
-                new Operation("+",1,2),
-                new Operation("-",1,2),
-                new Operation("*",2,2),
-                new Operation("/",2,2),
+                new Operation("!",4,1),
+                new Operation("all",5,1),
+                new Operation("exist",5,1),
                 new Operation("^",3,2),
+                new Operation("v",2,2),
+                new Operation("xor",2,2),
+                new Operation("->",1,2),
+                new Operation("~",0,2),
                 Operation.CloseScob,
-                Operation.CloseSqScob,
                 Operation.OpenScob,
                 Operation.GetOp,
-                Operation.OpenSqScob,
                 Operation.Separator
             };
-            //Console.WriteLine(Poliz(Console.ReadLine()));
-            predicatesPOLIN.polins();
+            Console.WriteLine(Poliz(Console.ReadLine())); 
         }
-
         private static bool isCorrect(string text)
         {
             if (!text[text.Length - 1].Equals('#'))
@@ -48,8 +47,8 @@ namespace lab1
                 else if (i == ')')
                 {
                     if (t == 0)
-                            return false;
-                        t--;
+                        return false;
+                    t--;
                 }
             }
             return t == 0;
@@ -58,7 +57,7 @@ namespace lab1
         static string findNum(string t, int pos)
         {
             string res = "";
-            while (t[pos]!='#' &&  !operation.Any(o=>o.isOperation(t,pos)))
+            while (t[pos] != '#' && !operation.Any(o => o.isOperation(t, pos)))
             {
                 res += t[pos];
                 pos++;
@@ -68,18 +67,18 @@ namespace lab1
 
         private static string Poliz(string t)
         {
-            if (!isCorrect(t))
+            if (!isCorrect(t)) 
                 return "";
             t = new string(t.Where(c => c != ' ').ToArray());
             int pos = 0;
             string res = "";
             var st = new Stack<Operation>();
-            while (t[pos]!='#')
+            while (t[pos] != '#')
             {
                 var temp = findNum(t, pos);
                 if (temp == "")
                 {
-                    if (st.Count == 0 || st.Peek() == Operation.OpenScob || st.Peek()==Operation.OpenSqScob)
+                    if (st.Count == 0 || st.Peek() == Operation.OpenScob)
                         st.Push(getOperation(t, ref pos));
                     else if (t[pos] == '(')
                         st.Push(getOperation(t, ref pos));
@@ -90,31 +89,8 @@ namespace lab1
                             res += " " + i;
                         pos++;
                     }
-                    else if (t[pos] == '[')
-                    {
-                        st.Push(Operation.GetOp);
-                        st.Push(Operation.OpenSqScob);
-                        STINDEX = 2;
-                        pos++;
-                    }
                     else if (t[pos] == ',')
                     {
-                        while (st.Peek() != Operation.OpenSqScob)
-                        {
-                            res += " " + st.Pop();
-                            STINDEX++;
-                        }
-                        pos++;
-                    }
-                    else if (t[pos] == ']')
-                    {
-                        Operation i;
-                        while ((i = st.Pop()) != Operation.OpenSqScob)
-                            res += " " + i;
-                        i = st.Pop();
-                        i.Size = STINDEX;
-                        res += " " + i;
-                        pos++;
                     }
                     else
                     {
@@ -135,7 +111,7 @@ namespace lab1
             return res;
         }
 
-        private static Operation getOperation(string t,ref int pos)
+        private static Operation getOperation(string t, ref int pos)
         {
             int tPos = pos;
             var op = operation.First(o => o.isOperation(t, tPos));
