@@ -10,8 +10,6 @@ namespace lab1
     {
         private static List<Operation> operation;
 
-        private static int STINDEX = 0;
-
         private static List<int> STINDEXES = new List<int>();
 
         public static void polins() 
@@ -99,6 +97,13 @@ namespace lab1
                             res += " " + st.Pop();
                         st.Push(o);
                     }
+                }
+                else if (t[pos+temp.Length] == '(')
+                {
+                    Operation op = new Operation(temp);
+                    st.Push(Operation.GetOp);
+                    st.Push(op);
+                    pos = pos + temp.Length;
                 }
                 else
                 {
