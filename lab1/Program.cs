@@ -34,6 +34,10 @@ namespace lab1
 
         private static bool isCorrect(string text)
         {
+            if (!text[text.Length - 1].Equals('#'))
+            {
+                return false;
+            }
             int f = 0, s = 0, t = 0;
             foreach (var i in text)
             {
