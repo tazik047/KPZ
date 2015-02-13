@@ -84,7 +84,14 @@ namespace lab1
                     {
                         Operation i;
                         while ((i = st.Pop()) != Operation.OpenScob)
+                        {
+                            if (i == Operation.GetOp)
+                            {
+                                st.Pop();
+                                break;
+                            }
                             res += " " + i;
+                        }
                         pos++;
                     }
                     else if (t[pos] == ',')
@@ -112,7 +119,14 @@ namespace lab1
                 }
             }
             while (st.Count() != 0)
-                res += " " + st.Pop();
+            {
+                Operation o = st.Pop();
+                if (o == Operation.GetOp)
+                {
+                    continue;
+                }
+                res += " " + o;
+            }
             return res;
         }
 
