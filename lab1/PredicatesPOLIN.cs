@@ -84,7 +84,10 @@ namespace lab1
                         Operation o = getOperation(t, ref pos);
                         if (o == Operation.Separator)
                         {
-                            STINDEXES[indexOfList]++;
+                            if (STINDEXES.Count == 0)
+                                return "";
+                            STINDEXES[STINDEXES.Count -1 ]++;
+                            continue;
                         }
                         st.Push(o);
                     }
@@ -97,25 +100,32 @@ namespace lab1
                         {
                             if (i == Operation.GetOp)
                             {
-                                st.Pop();
+                                i = st.Pop();
+                                i.Size = STINDEXES[STINDEXES.Count - 1];
+                                res += " " + i;
                                 break;
                             }
                             if (i == Operation.Separator || i.Character == ",")
                             {
                                 st.Pop();
-                                STINDEXES[indexOfList]++;
+                                STINDEXES[STINDEXES.Count - 1]++;
                                 continue;
                             }
-                            STINDEXES[indexOfList]++;
-                            i.Size = STINDEXES[indexOfList];
+                            //STINDEXES[STINDEXES.Count - 1]++;
                             res += " " + i;
                         }
                         pos++;
+                        STINDEXES.RemoveAt(STINDEXES.Count - 1);
                         indexOfList--;
                     }
                     else if (t[pos] == ',')
                     {
-                        st.Push(Operation.Separator);
+                        while (st.Peek() != Operation.GetOp)
+                        {
+                            res += " " + st.Pop();
+                            
+                        }
+                        STINDEXES[STINDEXES.Count - 1]++;
                         pos++;
                     }
                     else
@@ -129,12 +139,12 @@ namespace lab1
                 else if (t[pos+temp.Length] == '(')
                 {
                     Operation op = new Operation(temp);
-                    st.Push(Operation.GetOp);
                     st.Push(op);
+                    st.Push(Operation.GetOp);
                     STINDEX = 1;
                     STINDEXES.Add(STINDEX);
                     indexOfList++;
-                    pos = pos + temp.Length;
+                    pos += temp.Length + 1;
                 }
                 else
                 {
@@ -144,15 +154,15 @@ namespace lab1
             }
             while (st.Count() != 0)
             {
-                int count = 0;
+                //int count = 0;
                 Operation o = st.Pop();
-                o.Size = STINDEXES[STINDEXES.Count-count-1];
+                /*o.Size = STINDEXES[STINDEXES.Count-count-1];
                 if (o == Operation.GetOp || o == Operation.CloseScob || o == Operation.OpenScob || o.Character == ",")
                 {
                     continue;
-                }
+                }*/
                 res += " " + o;
-                count++;
+                //count++;
             }
             return res;
         }
