@@ -10,29 +10,28 @@ namespace lab1
     {
         private static List<Operation> operation;
 
-        private static int STINDEX = 0;
-
         private static List<int> STINDEXES = new List<int>();
 
-        public static void polins() 
+        public static void polins()
         {
             operation = new List<Operation>()
             {
-                new Operation("!",4,1),
-                new Operation("all",5,1),
-                new Operation("exist",5,1),
-                new Operation("^",3,2),
-                new Operation("v",2,2),
-                new Operation("xor",2,2),
-                new Operation("->",1,2),
-                new Operation("~",0,2),
+                new Operation("!", 4, 1),
+                new Operation("all", 5, 1),
+                new Operation("exist", 5, 1),
+                new Operation("^", 3, 2),
+                new Operation("v", 2, 2),
+                new Operation("xor", 2, 2),
+                new Operation("->", 1, 2),
+                new Operation("~", 0, 2),
                 Operation.CloseScob,
                 Operation.OpenScob,
                 Operation.GetOp,
                 Operation.Separator
             };
-            Console.WriteLine(Poliz(Console.ReadLine())); 
+            Console.WriteLine(Poliz(Console.ReadLine()));
         }
+
         private static bool isCorrect(string text)
         {
             if (!text[text.Length - 1].Equals('#'))
@@ -67,7 +66,6 @@ namespace lab1
 
         private static string Poliz(string t)
         {
-            int indexOfList = -1;
             if (!isCorrect(t)) 
                 return "";
             t = new string(t.Where(c => c != ' ').ToArray());
@@ -102,6 +100,7 @@ namespace lab1
                             {
                                 i = st.Pop();
                                 i.Size = STINDEXES[STINDEXES.Count - 1];
+                                STINDEXES.RemoveAt(STINDEXES.Count - 1);
                                 res += " " + i;
                                 break;
                             }
@@ -111,12 +110,9 @@ namespace lab1
                                 STINDEXES[STINDEXES.Count - 1]++;
                                 continue;
                             }
-                            //STINDEXES[STINDEXES.Count - 1]++;
                             res += " " + i;
                         }
                         pos++;
-                        STINDEXES.RemoveAt(STINDEXES.Count - 1);
-                        indexOfList--;
                     }
                     else if (t[pos] == ',')
                     {
@@ -138,12 +134,10 @@ namespace lab1
                 }
                 else if (t[pos+temp.Length] == '(')
                 {
-                    Operation op = new Operation(temp);
+                    var op = new Operation(temp);
                     st.Push(op);
                     st.Push(Operation.GetOp);
-                    STINDEX = 1;
-                    STINDEXES.Add(STINDEX);
-                    indexOfList++;
+                    STINDEXES.Add(1);
                     pos += temp.Length + 1;
                 }
                 else
