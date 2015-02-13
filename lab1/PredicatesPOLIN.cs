@@ -10,6 +10,8 @@ namespace lab1
     {
         private static List<Operation> operation;
 
+        private static int STINDEX = 0;
+
         private static List<int> STINDEXES = new List<int>();
 
         public static void polins() 
@@ -65,6 +67,7 @@ namespace lab1
 
         private static string Poliz(string t)
         {
+            int indexOfList = -1;
             if (!isCorrect(t)) 
                 return "";
             t = new string(t.Where(c => c != ' ').ToArray());
@@ -77,7 +80,14 @@ namespace lab1
                 if (temp == "")
                 {
                     if (st.Count == 0 || st.Peek() == Operation.OpenScob)
-                        st.Push(getOperation(t, ref pos));
+                    {
+                        Operation o = getOperation(t, ref pos);
+                        if (o == Operation.Separator)
+                        {
+                            STINDEXES[indexOfList]++;
+                        }
+                        st.Push(o);
+                    }
                     else if (t[pos] == '(')
                         st.Push(getOperation(t, ref pos));
                     else if (t[pos] == ')')
@@ -90,12 +100,22 @@ namespace lab1
                                 st.Pop();
                                 break;
                             }
+                            if (i == Operation.Separator || i.Character == ",")
+                            {
+                                st.Pop();
+                                STINDEXES[indexOfList]++;
+                                continue;
+                            }
+                            i.Size = STINDEXES[indexOfList];
                             res += " " + i;
                         }
                         pos++;
+                        indexOfList--;
                     }
                     else if (t[pos] == ',')
                     {
+                        st.Push(Operation.Separator);
+                        pos++;
                     }
                     else
                     {
@@ -110,6 +130,9 @@ namespace lab1
                     Operation op = new Operation(temp);
                     st.Push(Operation.GetOp);
                     st.Push(op);
+                    STINDEX = 1;
+                    STINDEXES.Add(STINDEX);
+                    indexOfList++;
                     pos = pos + temp.Length;
                 }
                 else
@@ -120,12 +143,15 @@ namespace lab1
             }
             while (st.Count() != 0)
             {
+                int count = 0;
                 Operation o = st.Pop();
-                if (o == Operation.GetOp)
+                o.Size = STINDEXES[STINDEXES.Count-count-1];
+                if (o == Operation.GetOp || o == Operation.CloseScob || o == Operation.OpenScob || o.Character == ",")
                 {
                     continue;
                 }
                 res += " " + o;
+                count++;
             }
             return res;
         }
