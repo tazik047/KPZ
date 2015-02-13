@@ -106,6 +106,7 @@ namespace lab1
                                 STINDEXES[indexOfList]++;
                                 continue;
                             }
+                            STINDEXES[indexOfList]++;
                             i.Size = STINDEXES[indexOfList];
                             res += " " + i;
                         }
