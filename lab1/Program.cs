@@ -31,7 +31,10 @@ namespace lab1
                 Operation.Separator
             };
             //Console.WriteLine(Poliz(Console.ReadLine()));
-            predicatesPOLIN.polins();
+            predicatesPOLIZ.StartPoliz();
+            Console.ReadLine();
+            Console.Clear();
+            Main(new []{""});
         }
 
         private static bool isCorrect(string text)
@@ -79,8 +82,16 @@ namespace lab1
                 var temp = findNum(t, pos);
                 if (temp == "")
                 {
-                    if (st.Count == 0 || st.Peek() == Operation.OpenScob || st.Peek()==Operation.OpenSqScob)
-                        st.Push(getOperation(t, ref pos));
+                    if (st.Count == 0 || st.Peek() == Operation.OpenScob || st.Peek() == Operation.OpenSqScob)
+                    {
+                        Operation o = getOperation(t, ref pos);
+                        if (o == Operation.Separator)
+                        {
+                            STINDEX++;
+                            continue;
+                        }
+                        st.Push(o);
+                    }
                     else if (t[pos] == '(')
                         st.Push(getOperation(t, ref pos));
                     else if (t[pos] == ')')

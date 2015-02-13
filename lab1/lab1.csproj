@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Operation.cs" />
-    <Compile Include="PredicatesPOLIN.cs" />
+    <Compile Include="PredicatesPOLIZ.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

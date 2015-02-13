@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace lab1
 {
-    static class predicatesPOLIN
+    static class predicatesPOLIZ
     {
         private static List<Operation> operation;
 
         private static List<int> STINDEXES = new List<int>();
 
-        public static void polins()
+        public static void StartPoliz()
         {
             operation = new List<Operation>()
             {
