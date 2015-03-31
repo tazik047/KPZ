@@ -27,7 +27,7 @@ namespace lab2
             };
 
             lexemes[2].Lexemes.AddRange(new[] { "&", "|", "^", "->", "!" });
-            lexemes[3].Lexemes.AddRange(new[] {"(", ")"});
+            lexemes[3].Lexemes.AddRange(new[] { "(", ")" });
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -41,7 +41,7 @@ namespace lab2
         {
             var t = textBox2.Text;
             List<string> resLexemes = new List<string>();
-            for (int index = 0; index < t.Length;)
+            for (int index = 0; index < t.Length; )
             {
                 try
                 {
@@ -57,11 +57,10 @@ namespace lab2
         private string FindLexem(string s, ref int index)
         {
             var str = s.Substring(index);
-            bool undefind = true;
             for (int i = lexemes.Length - 1; i >= 0; i--)
             {
                 var t = lexemes[i].StartWith(str);
-                if(t==null)
+                if (t == null)
                     continue;
                 if (!lexemes[i].Lexemes.Contains(t))
                     lexemes[i].Lexemes.Add(t);
@@ -69,8 +68,7 @@ namespace lab2
                 return String.Format("({0},{1})", i, lexemes[i].Lexemes.IndexOf(t));
 
             }
-            if(undefind)
-                throw new ArgumentException("Неизвестная лексема.");
+            throw new ArgumentException("Неизвестная лексема.");
         }
     }
 }
