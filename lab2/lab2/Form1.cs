@@ -43,6 +43,7 @@ namespace lab2
             List<string> resLexemes = new List<string>();
             for (int index = 0; index < t.Length; )
             {
+                
                 try
                 {
                     resLexemes.Add(FindLexem(t, ref index));
@@ -50,8 +51,46 @@ namespace lab2
                 catch (ArgumentException ex)
                 {
                     label2.Text = ex.Message;
+                    return;
                 }
             }
+            int oldIndex = 0,prevLength = -1;
+            var predLexemes = new List<string>();
+            while (lexemes[4].Lexemes.Count != prevLength)
+            {
+                prevLength = lexemes[4].Lexemes.Count;
+                for (; oldIndex<prevLength; oldIndex++)
+                {
+                    var pred = lexemes[4].Lexemes[oldIndex];
+                    predLexemes.Clear();
+                    var param = pred.SkipWhile(c => c != '(').ToList();
+                    param.RemoveAt(param.Count - 1);
+                    param.RemoveAt(0);
+                    var temp = new string(param.ToArray());
+                    for (int i = 0; i < temp.Length;)
+                    {
+                        try
+                        {
+                             predLexemes.Add(FindLexem(temp, ref i));
+
+                            if (temp.Length != i && temp[i] == ',')
+                            {
+                                i++;
+                                predLexemes.Add(",");
+                            }
+                        }
+                        catch (ArgumentException ex)
+                        {
+                            label2.Text = ex.Message;
+                            return;
+                        }
+                    }
+                    lexemes[4].Lexemes[oldIndex] = predLexemes.Aggregate("", (seed, str) => seed + str);
+                }
+                
+            }
+            label2.Text = "";
+            resLexemes.ForEach(s=>label2.Text+=s);
         }
 
         private string FindLexem(string s, ref int index)
@@ -68,7 +107,7 @@ namespace lab2
                 return String.Format("({0},{1})", i, lexemes[i].Lexemes.IndexOf(t));
 
             }
-            throw new ArgumentException("Неизвестная лексема.");
+            throw new ArgumentException("Неизвестная лексема - "+s[index]+".");
         }
     }
 }

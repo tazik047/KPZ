@@ -42,7 +42,7 @@ namespace lab2
         public string StartWith(string s)
         {
             if (Pattern == null)
-                return Lexemes.FirstOrDefault(s.Equals);
+                return Lexemes.FirstOrDefault(s.StartsWith);
             Regex r = new Regex("^"+Pattern);
             if (r.IsMatch(s))
                 return r.Match(s).Value;
