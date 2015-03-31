@@ -104,10 +104,29 @@ namespace lab2
                 if (!lexemes[i].Lexemes.Contains(t))
                     lexemes[i].Lexemes.Add(t);
                 index += t.Length;
+                fillTheTable(i, lexemes[i].Lexemes.IndexOf(t), t);
                 return String.Format("({0},{1})", i, lexemes[i].Lexemes.IndexOf(t));
 
             }
             throw new ArgumentException("Неизвестная лексема - "+s[index]+".");
+        }
+        private void fillTheTable(int index, int indexOfElement, string t) 
+        {
+            switch (index)
+            {
+                case 0:
+                    dataGridView1.Rows.Add(indexOfElement, t);
+                    break;
+                case 1:
+                    dataGridView2.Rows.Add(indexOfElement, t);
+                    break;
+                case 2:
+                    dataGridView3.Rows.Add(indexOfElement, t);
+                    break;
+                case 4:
+                    dataGridView4.Rows.Add(indexOfElement, t);
+                    break;
+            }
         }
     }
 }
