@@ -32,21 +32,18 @@ namespace lab2
             {
                 return Lexemes.Contains(s);
             }
-            else
-            {
-                Regex r = new Regex(Pattern);
-                return s == r.Match(s).Value;
-            }
+            Regex r = new Regex(Pattern);
+            return s.Length!=0 && s == r.Match(s).Value;
         }
 
         public string StartWith(string s)
         {
             if (Pattern == null)
                 return Lexemes.FirstOrDefault(s.StartsWith);
-            Regex r = new Regex("^"+Pattern);
+            Regex r = new Regex("^" + Pattern);
             if (r.IsMatch(s))
             {
-                if(Id!=4)
+                if (Id != 5)
                     return r.Match(s).Value;
                 var str = r.Match(s).Value;
                 int firstIndex = str.IndexOf('(') + 1;
