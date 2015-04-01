@@ -45,7 +45,22 @@ namespace lab2
                 return Lexemes.FirstOrDefault(s.StartsWith);
             Regex r = new Regex("^"+Pattern);
             if (r.IsMatch(s))
-                return r.Match(s).Value;
+            {
+                if(Id!=4)
+                    return r.Match(s).Value;
+                var str = r.Match(s).Value;
+                int firstIndex = str.IndexOf('(') + 1;
+                int count = 1;
+                while (count != 0)
+                {
+                    if (str[firstIndex] == '(')
+                        count++;
+                    if (str[firstIndex] == ')')
+                        count--;
+                    firstIndex++;
+                }
+                return str.Substring(0, firstIndex);
+            }
             return null;
         }
     }

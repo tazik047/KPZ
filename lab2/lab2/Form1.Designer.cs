@@ -37,23 +37,27 @@
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Number = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Identifier = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.CNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Constant = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.ONumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Operation = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.dataGridView4 = new System.Windows.Forms.DataGridView();
+            this.PNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Predicate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.Number = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Identifier = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Constant = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ONumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Operation = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Predicate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.dataGridView5 = new System.Windows.Forms.DataGridView();
+            this.SNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Skobka = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -66,6 +70,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.tabPage6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
+            this.tabPage7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -142,6 +148,7 @@
             this.tabControl2.Controls.Add(this.tabPage4);
             this.tabControl2.Controls.Add(this.tabPage5);
             this.tabControl2.Controls.Add(this.tabPage6);
+            this.tabControl2.Controls.Add(this.tabPage7);
             this.tabControl2.Location = new System.Drawing.Point(0, 107);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
@@ -170,6 +177,16 @@
             this.dataGridView1.Size = new System.Drawing.Size(240, 150);
             this.dataGridView1.TabIndex = 0;
             // 
+            // Number
+            // 
+            this.Number.HeaderText = "№";
+            this.Number.Name = "Number";
+            // 
+            // Identifier
+            // 
+            this.Identifier.HeaderText = "Идентификатор";
+            this.Identifier.Name = "Identifier";
+            // 
             // tabPage4
             // 
             this.tabPage4.Controls.Add(this.dataGridView2);
@@ -191,6 +208,16 @@
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.Size = new System.Drawing.Size(240, 150);
             this.dataGridView2.TabIndex = 1;
+            // 
+            // CNumber
+            // 
+            this.CNumber.HeaderText = "№";
+            this.CNumber.Name = "CNumber";
+            // 
+            // Constant
+            // 
+            this.Constant.HeaderText = "Константа";
+            this.Constant.Name = "Constant";
             // 
             // tabPage5
             // 
@@ -214,6 +241,16 @@
             this.dataGridView3.Size = new System.Drawing.Size(240, 150);
             this.dataGridView3.TabIndex = 1;
             // 
+            // ONumber
+            // 
+            this.ONumber.HeaderText = "№";
+            this.ONumber.Name = "ONumber";
+            // 
+            // Operation
+            // 
+            this.Operation.HeaderText = "Операция";
+            this.Operation.Name = "Operation";
+            // 
             // tabPage6
             // 
             this.tabPage6.Controls.Add(this.dataGridView4);
@@ -235,6 +272,16 @@
             this.dataGridView4.Name = "dataGridView4";
             this.dataGridView4.Size = new System.Drawing.Size(240, 150);
             this.dataGridView4.TabIndex = 1;
+            // 
+            // PNumber
+            // 
+            this.PNumber.HeaderText = "№";
+            this.PNumber.Name = "PNumber";
+            // 
+            // Predicate
+            // 
+            this.Predicate.HeaderText = "Предикат";
+            this.Predicate.Name = "Predicate";
             // 
             // label2
             // 
@@ -262,45 +309,37 @@
             this.textBox2.Size = new System.Drawing.Size(362, 20);
             this.textBox2.TabIndex = 0;
             // 
-            // Number
+            // tabPage7
             // 
-            this.Number.HeaderText = "№";
-            this.Number.Name = "Number";
+            this.tabPage7.Controls.Add(this.dataGridView5);
+            this.tabPage7.Location = new System.Drawing.Point(4, 22);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage7.Size = new System.Drawing.Size(648, 341);
+            this.tabPage7.TabIndex = 4;
+            this.tabPage7.Text = "Скобки";
+            this.tabPage7.UseVisualStyleBackColor = true;
             // 
-            // Identifier
+            // dataGridView5
             // 
-            this.Identifier.HeaderText = "Идентификатор";
-            this.Identifier.Name = "Identifier";
+            this.dataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView5.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.SNum,
+            this.Skobka});
+            this.dataGridView5.Location = new System.Drawing.Point(207, 32);
+            this.dataGridView5.Name = "dataGridView5";
+            this.dataGridView5.Size = new System.Drawing.Size(240, 150);
+            this.dataGridView5.TabIndex = 0;
             // 
-            // CNumber
+            // SNum
             // 
-            this.CNumber.HeaderText = "№";
-            this.CNumber.Name = "CNumber";
+            this.SNum.HeaderText = "№";
+            this.SNum.Name = "SNum";
             // 
-            // Constant
+            // Skobka
             // 
-            this.Constant.HeaderText = "Константа";
-            this.Constant.Name = "Constant";
-            // 
-            // ONumber
-            // 
-            this.ONumber.HeaderText = "№";
-            this.ONumber.Name = "ONumber";
-            // 
-            // Operation
-            // 
-            this.Operation.HeaderText = "Операция";
-            this.Operation.Name = "Operation";
-            // 
-            // PNumber
-            // 
-            this.PNumber.HeaderText = "№";
-            this.PNumber.Name = "PNumber";
-            // 
-            // Predicate
-            // 
-            this.Predicate.HeaderText = "Предикат";
-            this.Predicate.Name = "Predicate";
+            this.Skobka.HeaderText = "Скобка";
+            this.Skobka.Name = "Skobka";
             // 
             // Form1
             // 
@@ -324,6 +363,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.tabPage6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
+            this.tabPage7.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -356,6 +397,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Operation;
         private System.Windows.Forms.DataGridViewTextBoxColumn PNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn Predicate;
+        private System.Windows.Forms.TabPage tabPage7;
+        private System.Windows.Forms.DataGridView dataGridView5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SNum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Skobka;
     }
 }
 
