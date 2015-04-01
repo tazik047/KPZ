@@ -45,6 +45,7 @@ namespace lab2
             dataGridView2.Rows.Clear();
             dataGridView3.Rows.Clear();
             dataGridView4.Rows.Clear();
+            dataGridView5.Rows.Clear();
             var t = textBox2.Text;
             List<string> resLexemes = new List<string>();
             for (int index = 0; index < t.Length; )
@@ -70,7 +71,7 @@ namespace lab2
                     var pred = lexemes[4].Lexemes[oldIndex];
                     predLexemes.Clear();
                     var param = pred.SkipWhile(c => c != '(').ToList();
-                    predLexemes.Add(t.Substring(0, pred.Length - param.Count + 1));
+                    predLexemes.Add(pred.Substring(0, pred.Length - param.Count + 1));
                     param.RemoveAt(param.Count - 1);
                     param.RemoveAt(0);
                     var temp = new string(param.ToArray());
