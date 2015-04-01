@@ -121,7 +121,7 @@ namespace lab2
                 if (!lexemes[i].Lexemes.Contains(t))
                     lexemes[i].Lexemes.Add(t);
                 index += t.Length;
-                return String.Format("({0},{1})", i, lexemes[i].Lexemes.IndexOf(t));
+                return String.Format("({0},{1})", lexemes[i].Id, lexemes[i].Lexemes.IndexOf(t));
 
             }
             throw new ArgumentException("Неизвестная лексема - " + s[index] + ".");
