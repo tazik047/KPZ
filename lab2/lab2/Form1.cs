@@ -46,7 +46,8 @@ namespace lab2
             dataGridView3.Rows.Clear();
             dataGridView4.Rows.Clear();
             dataGridView5.Rows.Clear();
-            var t = textBox2.Text;
+            fillTheLexemes();
+            var t = new string(textBox2.Text.Where(c=>c!=' ').ToArray());
             List<string> resLexemes = new List<string>();
             for (int index = 0; index < t.Length; )
             {
@@ -58,6 +59,11 @@ namespace lab2
                 catch (ArgumentException ex)
                 {
                     label2.Text = ex.Message;
+                    return;
+                }
+                catch (System.IndexOutOfRangeException)
+                {
+                    label2.Text = "Скобка в предикате не закрыта.";
                     return;
                 }
             }
@@ -92,6 +98,11 @@ namespace lab2
                             label2.Text = ex.Message;
                             return;
                         }
+                        catch (System.IndexOutOfRangeException)
+                        {
+                            label2.Text = "Скобка в предикате не закрыта.";
+                            return;
+                        }
                     }
                     predLexemes.Add(")");
                     lexemes[4].Lexemes[oldIndex] = predLexemes.Aggregate("", (seed, str) => seed + str);
@@ -107,7 +118,6 @@ namespace lab2
                     fillTheTable(i, j, lexemes[i].Lexemes[j]);
                 }
             }
-            fillTheLexemes();
         }
 
         private string FindLexem(string s, ref int index)
