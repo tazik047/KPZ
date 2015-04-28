@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.label1 = new System.Windows.Forms.Label();
@@ -64,6 +64,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.button3 = new System.Windows.Forms.Button();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -78,18 +81,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).BeginInit();
             this.tabPage6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
+            this.tabPage8.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage8);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(617, 373);
+            this.tabControl1.Size = new System.Drawing.Size(815, 429);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -144,7 +149,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 30);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(609, 339);
+            this.tabPage2.Size = new System.Drawing.Size(807, 395);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Лексический анализатор";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -162,7 +167,7 @@
             this.tabControl2.Location = new System.Drawing.Point(0, 107);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(606, 232);
+            this.tabControl2.Size = new System.Drawing.Size(804, 288);
             this.tabControl2.TabIndex = 3;
             // 
             // tabPage3
@@ -171,7 +176,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 30);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(598, 198);
+            this.tabPage3.Size = new System.Drawing.Size(796, 254);
             this.tabPage3.TabIndex = 0;
             this.tabPage3.Text = "Идентификаторы";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -190,20 +195,20 @@
             this.dataGridView1.Location = new System.Drawing.Point(2, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(596, 196);
+            this.dataGridView1.Size = new System.Drawing.Size(794, 252);
             this.dataGridView1.TabIndex = 0;
             // 
             // Number
             // 
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Number.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Number.DefaultCellStyle = dataGridViewCellStyle1;
             this.Number.HeaderText = "№";
             this.Number.Name = "Number";
             // 
             // Identifier
             // 
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Identifier.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Identifier.DefaultCellStyle = dataGridViewCellStyle2;
             this.Identifier.HeaderText = "Идентификатор";
             this.Identifier.Name = "Identifier";
             this.Identifier.Width = 140;
@@ -233,13 +238,13 @@
             this.dataGridView2.Location = new System.Drawing.Point(2, 0);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersVisible = false;
-            this.dataGridView2.Size = new System.Drawing.Size(596, 199);
+            this.dataGridView2.Size = new System.Drawing.Size(596, 207);
             this.dataGridView2.TabIndex = 1;
             // 
             // CNumber
             // 
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Times New Roman", 14.25F);
-            this.CNumber.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Times New Roman", 14.25F);
+            this.CNumber.DefaultCellStyle = dataGridViewCellStyle3;
             this.CNumber.HeaderText = "№";
             this.CNumber.Name = "CNumber";
             // 
@@ -274,13 +279,13 @@
             this.dataGridView3.Location = new System.Drawing.Point(2, 0);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowHeadersVisible = false;
-            this.dataGridView3.Size = new System.Drawing.Size(599, 198);
+            this.dataGridView3.Size = new System.Drawing.Size(599, 206);
             this.dataGridView3.TabIndex = 1;
             // 
             // ONumber
             // 
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Times New Roman", 14.25F);
-            this.ONumber.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Times New Roman", 14.25F);
+            this.ONumber.DefaultCellStyle = dataGridViewCellStyle4;
             this.ONumber.HeaderText = "№";
             this.ONumber.Name = "ONumber";
             // 
@@ -315,13 +320,13 @@
             this.dataGridView5.Location = new System.Drawing.Point(2, 0);
             this.dataGridView5.Name = "dataGridView5";
             this.dataGridView5.RowHeadersVisible = false;
-            this.dataGridView5.Size = new System.Drawing.Size(597, 196);
+            this.dataGridView5.Size = new System.Drawing.Size(597, 204);
             this.dataGridView5.TabIndex = 0;
             // 
             // SNum
             // 
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Times New Roman", 14.25F);
-            this.SNum.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Times New Roman", 14.25F);
+            this.SNum.DefaultCellStyle = dataGridViewCellStyle5;
             this.SNum.HeaderText = "№";
             this.SNum.Name = "SNum";
             // 
@@ -358,13 +363,13 @@
             this.dataGridView4.Name = "dataGridView4";
             this.dataGridView4.RowHeadersVisible = false;
             this.dataGridView4.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            this.dataGridView4.Size = new System.Drawing.Size(597, 199);
+            this.dataGridView4.Size = new System.Drawing.Size(597, 207);
             this.dataGridView4.TabIndex = 1;
             // 
             // PNumber
             // 
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Times New Roman", 14.25F);
-            this.PNumber.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Times New Roman", 14.25F);
+            this.PNumber.DefaultCellStyle = dataGridViewCellStyle6;
             this.PNumber.HeaderText = "№";
             this.PNumber.Name = "PNumber";
             // 
@@ -401,11 +406,41 @@
             this.textBox2.Size = new System.Drawing.Size(362, 29);
             this.textBox2.TabIndex = 0;
             // 
+            // tabPage8
+            // 
+            this.tabPage8.Controls.Add(this.button3);
+            this.tabPage8.Controls.Add(this.textBox3);
+            this.tabPage8.Location = new System.Drawing.Point(4, 30);
+            this.tabPage8.Name = "tabPage8";
+            this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage8.Size = new System.Drawing.Size(807, 395);
+            this.tabPage8.TabIndex = 2;
+            this.tabPage8.Text = "Синтаксический анализатор";
+            this.tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.AliceBlue;
+            this.button3.Location = new System.Drawing.Point(412, 24);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(198, 46);
+            this.button3.TabIndex = 3;
+            this.button3.Text = "Проверить";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(27, 34);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(362, 29);
+            this.textBox3.TabIndex = 2;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(617, 373);
+            this.ClientSize = new System.Drawing.Size(815, 429);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
             this.Text = "Конечный автомат";
@@ -425,6 +460,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).EndInit();
             this.tabPage6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
+            this.tabPage8.ResumeLayout(false);
+            this.tabPage8.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -461,6 +498,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Predicate;
         private System.Windows.Forms.DataGridViewTextBoxColumn SNum;
         private System.Windows.Forms.DataGridViewTextBoxColumn Skobka;
+        private System.Windows.Forms.TabPage tabPage8;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TextBox textBox3;
     }
 }
 
