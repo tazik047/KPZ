@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,6 +16,8 @@ namespace lab2
         private Lexeme[] lexemes;
 
         private Terminal[] terminals;
+
+        private bool isGood = true;
 
         public Form1()
         {
@@ -61,7 +64,7 @@ namespace lab2
                 new Lexeme(4, "Скобка"),
                 new Lexeme(5, "Скобка"),
                 new Lexeme(6, "Предикат", @"[a-zA-Z]+\([^,]+(,[^,]+)*\)"), 
-                new Lexeme(7, "Операция"),
+                new Lexeme(7, "Отрицание"),
             };
 
             lexemes[2].Lexemes.AddRange(new[] { "&", "|", "^", "->" });
@@ -84,6 +87,7 @@ namespace lab2
             dataGridView4.Rows.Clear();
             dataGridView5.Rows.Clear();
             fillTheLexemes();
+            isGood = true;
             var t = new string(textBox2.Text.Where(c => c != ' ').ToArray());
             List<string> resLexemes = new List<string>();
             for (int index = 0; index < t.Length; )
@@ -96,11 +100,13 @@ namespace lab2
                 catch (ArgumentException ex)
                 {
                     label2.Text = ex.Message;
+                    isGood = false;
                     return;
                 }
                 catch (System.IndexOutOfRangeException)
                 {
                     label2.Text = "Скобка в предикате не закрыта.";
+                    isGood = false;
                     return;
                 }
             }
@@ -133,11 +139,13 @@ namespace lab2
                         catch (ArgumentException ex)
                         {
                             label2.Text = ex.Message;
+                            isGood = false;
                             return;
                         }
                         catch (System.IndexOutOfRangeException)
                         {
                             label2.Text = "Скобка в предикате не закрыта.";
+                            isGood = false;
                             return;
                         }
                     }
@@ -201,10 +209,10 @@ namespace lab2
         {
             textBox2.Text = textBox3.Text;
             button2_Click(sender, e);
+            if (!isGood) return;
             var tuple = analyze(label2.Text + "#");
+            bool res = tuple.Item1;
             richTextBox1.Text = "Проверка " + textBox3.Text + Environment.NewLine + tuple.Item2;
-            richTextBox1.BackColor = tuple.Item1 ? Color.White : Color.Red;
-            textBox3.BackColor = tuple.Item1 ? Color.Green : Color.White;
             foreach (var j in lexemes[5].Lexemes)
             {
                 var param = j.SkipWhile(c => c != '(').ToList();
@@ -217,20 +225,21 @@ namespace lab2
                 {
                     if(param.Count==(ind+5) || param[ind + 5]==','){
                         p.Add(new string(param.Take(ind + 5).ToArray()));
-                        param = param.Skip(ind + 5).ToList();
+                        param = param.Skip(ind + 6).ToList();
                         ind = 0;
                     }
                     ind += 5;
                 }
-                ind = 0;
+                if(param.Count!=0) p.Add(new string(param.ToArray()));
                 foreach (var temp1 in p)
                 {
                     tuple = analyze(temp1 + "#");
-                    richTextBox1.Text += Environment.NewLine + "Проверка " + temp1 + Environment.NewLine + tuple.Item2;
-                    richTextBox1.BackColor = tuple.Item1 ? Color.White : Color.Red;
-                    textBox3.BackColor = tuple.Item1 ? Color.Green : Color.White;
+                    res &= tuple.Item1; 
+                    richTextBox1.Text += Environment.NewLine + Environment.NewLine+"Проверка " + temp1 + Environment.NewLine + tuple.Item2;
                 }
             }
+            richTextBox1.BackColor = res ? Color.White : Color.Red;
+            textBox3.BackColor = res ? Color.Green : Color.White;
         }
 
         private Tuple<bool, string> analyze(string text)
