@@ -45,7 +45,7 @@ namespace lab2
             terminals[2].SetForAll(0, lexemes[2]);
             terminals[2].SetForAll(1, lexemes[4]);
             terminals[3].SetForAll(1, lexemes[5], lexemes[3], lexemes[1], lexemes[0]);
-            terminals[3].SetForAll(0, lexemes[5]);
+            terminals[3].SetForAll(0, lexemes[6]);
             terminals[4].SetForAll(0, lexemes[3]);
             terminals[4].SetForAll(1, lexemes[5]);
             terminals[4].SetForAll(2, lexemes[1]);
@@ -142,7 +142,7 @@ namespace lab2
                         }
                     }
                     predLexemes.Add(")");
-                    lexemes[4].Lexemes[oldIndex] = predLexemes.Aggregate("", (seed, str) => seed + str);
+                    lexemes[5].Lexemes[oldIndex] = predLexemes.Aggregate("", (seed, str) => seed + str);
                 }
 
             }
@@ -201,50 +201,64 @@ namespace lab2
         {
             textBox2.Text = textBox3.Text;
             button2_Click(sender, e);
+            var tuple = analyze(label2.Text + "#");
+            richTextBox1.Text = "Проверка " + textBox3.Text + Environment.NewLine + tuple.Item2;
+            richTextBox1.BackColor = tuple.Item1 ? Color.White : Color.Red;
+            textBox3.BackColor = tuple.Item1 ? Color.Green : Color.White;
+            foreach (var j in lexemes[5].Lexemes)
+            {
+                tuple = analyze(j + "#");
+                richTextBox1.Text += "Проверка " + textBox3.Text + Environment.NewLine + tuple.Item2;
+                richTextBox1.BackColor = tuple.Item1 ? Color.White : Color.Red;
+                textBox3.BackColor = tuple.Item1 ? Color.Green : Color.White;
+            }
         }
 
         private Tuple<bool, string> analyze(string text)
         {            
-            Queue<object> queue = new Queue<object>();
-            queue.Enqueue(terminals[0]);
+            Stack<object> queue = new Stack<object>();
+            queue.Push(terminals[0]);
             int index = 0;
-            string log ="";
-            StringBuilder left = new StringBuilder();
+            StringBuilder log = new StringBuilder(), temp;
+            StringBuilder left = new StringBuilder(Environment.NewLine);
             List<string> right = new List<string>{terminals[0].Name};
             while (queue.Count != 0)
             {
                 Lexeme l = getLexeme(text, index);
-                object lex = queue.Dequeue();
+                object lex = queue.Pop();
+                right.RemoveAt(0);
                 if(l==null){
-                    if(lex==Terminal.End)
-                        return new Tuple<bool,string>(true, log);
-                    return new Tuple<bool, string>(false, log);
+                    if(lex.Equals(Terminal.End))
+                        return new Tuple<bool,string>(true, log.ToString());
+                    if (!((lex is Terminal) && ((Terminal)lex).haveEmpty()))
+                        return new Tuple<bool, string>(false, log.ToString());
                 }
-                if(l==lex){
+                else if(l.Equals(lex)){
                     left.Append(l.Type + " ");
-                    right.RemoveAt(0);
                     index += 5;
                 }
                 else{
                     Terminal t = lex as Terminal;
                     var next = t[l];
                     if(next == null){
-                        return new Tuple<bool, string>(false, log);
+                        return new Tuple<bool, string>(false, log.ToString());
                     }
-                    else{
+                    else if(!(next.Count==1 && (next[0] is Terminal) && (next[0].Equals(Terminal.Empty)))){
                         for(int i = next.Count - 1; i>=0; i--)
-                            queue.Enqueue(next[i]);
-                        right.InsertRange(0, next);
+                            queue.Push(next[i]);
+                        right.InsertRange(0, next.Select(o=>o.ToString()));
                     }
                 }
-                lo
+                temp = new StringBuilder();
+                log.Append(left + " => " + right.Aggregate(temp, (t,i)=>t.Append(i)));
             }
-            return new Tuple<bool,string>(false, log);
+            return new Tuple<bool,string>(false, log.ToString());
         }
 
-        private Lexeme getLexeme(string text, index){
+        private Lexeme getLexeme(string text, int index)
+        {
             if(text[index]=='#') return null;
-            int ind = Convert.ToInt32(text[index+1]);
+            int ind = text[index+1] - '0';
             return lexemes[ind-1];
         }
     }

@@ -16,7 +16,8 @@ namespace lab2
         {
             get
             {
-                return table.ContainsKey(index) ? Terminals[table[index]] : null;
+                bool t = table.ContainsKey(index); 
+                return t ? Terminals[table[index]] : null;
             }
         }
 
@@ -25,6 +26,16 @@ namespace lab2
             foreach (var m in mas)
                 table[m] = i;
 
+        }
+
+        public bool haveEmpty()
+        {
+            foreach (var i in Terminals)
+            {
+                if (i.Count == 1 && i[0].Equals(Terminal.Empty))
+                    return true;
+            }
+            return false;
         }
 
         public void AddTerminal(params object[] t)
@@ -41,12 +52,31 @@ namespace lab2
 
         public static bool operator ==(Terminal t1, Terminal t2)
         {
-            return t1.Name == t2.Name;
+            return t1.Equals(t2);
         }
 
         public static bool operator !=(Terminal t1, Terminal t2)
         {
             return !(t1 == t2);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+            return Name == ((Terminal)obj).Name;
+        }
+
+        public override string ToString()
+        {
+            return Name;
+        }
+
+        public override int GetHashCode()
+        {
+            return Name.GetHashCode();
         }
         
         public static Terminal End

@@ -67,6 +67,7 @@
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.button3 = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -105,7 +106,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 30);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(609, 339);
+            this.tabPage1.Size = new System.Drawing.Size(807, 395);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Конечный распознаватель";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -219,7 +220,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 30);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(598, 198);
+            this.tabPage4.Size = new System.Drawing.Size(796, 254);
             this.tabPage4.TabIndex = 1;
             this.tabPage4.Text = "Константы";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -238,7 +239,7 @@
             this.dataGridView2.Location = new System.Drawing.Point(2, 0);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersVisible = false;
-            this.dataGridView2.Size = new System.Drawing.Size(596, 207);
+            this.dataGridView2.Size = new System.Drawing.Size(794, 271);
             this.dataGridView2.TabIndex = 1;
             // 
             // CNumber
@@ -260,7 +261,7 @@
             this.tabPage5.Location = new System.Drawing.Point(4, 30);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(598, 198);
+            this.tabPage5.Size = new System.Drawing.Size(796, 254);
             this.tabPage5.TabIndex = 2;
             this.tabPage5.Text = "Операции";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -279,7 +280,7 @@
             this.dataGridView3.Location = new System.Drawing.Point(2, 0);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowHeadersVisible = false;
-            this.dataGridView3.Size = new System.Drawing.Size(599, 206);
+            this.dataGridView3.Size = new System.Drawing.Size(797, 270);
             this.dataGridView3.TabIndex = 1;
             // 
             // ONumber
@@ -301,7 +302,7 @@
             this.tabPage7.Location = new System.Drawing.Point(4, 30);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(598, 198);
+            this.tabPage7.Size = new System.Drawing.Size(796, 254);
             this.tabPage7.TabIndex = 3;
             this.tabPage7.Text = "Скобки";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -320,7 +321,7 @@
             this.dataGridView5.Location = new System.Drawing.Point(2, 0);
             this.dataGridView5.Name = "dataGridView5";
             this.dataGridView5.RowHeadersVisible = false;
-            this.dataGridView5.Size = new System.Drawing.Size(597, 204);
+            this.dataGridView5.Size = new System.Drawing.Size(795, 268);
             this.dataGridView5.TabIndex = 0;
             // 
             // SNum
@@ -342,7 +343,7 @@
             this.tabPage6.Location = new System.Drawing.Point(4, 30);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(598, 198);
+            this.tabPage6.Size = new System.Drawing.Size(796, 254);
             this.tabPage6.TabIndex = 4;
             this.tabPage6.Text = "Предикаты";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -363,7 +364,7 @@
             this.dataGridView4.Name = "dataGridView4";
             this.dataGridView4.RowHeadersVisible = false;
             this.dataGridView4.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            this.dataGridView4.Size = new System.Drawing.Size(597, 207);
+            this.dataGridView4.Size = new System.Drawing.Size(795, 271);
             this.dataGridView4.TabIndex = 1;
             // 
             // PNumber
@@ -408,6 +409,7 @@
             // 
             // tabPage8
             // 
+            this.tabPage8.Controls.Add(this.richTextBox1);
             this.tabPage8.Controls.Add(this.button3);
             this.tabPage8.Controls.Add(this.textBox3);
             this.tabPage8.Location = new System.Drawing.Point(4, 30);
@@ -435,6 +437,17 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(362, 29);
             this.textBox3.TabIndex = 2;
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.richTextBox1.Location = new System.Drawing.Point(8, 76);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(791, 313);
+            this.richTextBox1.TabIndex = 4;
+            this.richTextBox1.Text = "";
             // 
             // Form1
             // 
@@ -501,6 +514,7 @@
         private System.Windows.Forms.TabPage tabPage8;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }
 

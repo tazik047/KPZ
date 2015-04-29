@@ -60,5 +60,25 @@ namespace lab2
             }
             return null;
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            return Id == ((Lexeme)obj).Id;
+        }
+
+        public override int GetHashCode()
+        {
+            return Id;
+        }
+
+        public override string ToString()
+        {
+            return Type;
+        }
     }
 }
