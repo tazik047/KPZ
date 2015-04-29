@@ -207,10 +207,29 @@ namespace lab2
             textBox3.BackColor = tuple.Item1 ? Color.Green : Color.White;
             foreach (var j in lexemes[5].Lexemes)
             {
-                tuple = analyze(j + "#");
-                richTextBox1.Text += "Проверка " + textBox3.Text + Environment.NewLine + tuple.Item2;
-                richTextBox1.BackColor = tuple.Item1 ? Color.White : Color.Red;
-                textBox3.BackColor = tuple.Item1 ? Color.Green : Color.White;
+                var param = j.SkipWhile(c => c != '(').ToList();
+                param.RemoveAt(param.Count - 1);
+                param.RemoveAt(0);
+                //var temp = new string(param.ToArray());
+                var p = new List<string>();
+                int ind = 0;
+                while ((ind+5)<=param.Count)
+                {
+                    if(param.Count==(ind+5) || param[ind + 5]==','){
+                        p.Add(new string(param.Take(ind + 5).ToArray()));
+                        param = param.Skip(ind + 5).ToList();
+                        ind = 0;
+                    }
+                    ind += 5;
+                }
+                ind = 0;
+                foreach (var temp1 in p)
+                {
+                    tuple = analyze(temp1 + "#");
+                    richTextBox1.Text += Environment.NewLine + "Проверка " + temp1 + Environment.NewLine + tuple.Item2;
+                    richTextBox1.BackColor = tuple.Item1 ? Color.White : Color.Red;
+                    textBox3.BackColor = tuple.Item1 ? Color.Green : Color.White;
+                }
             }
         }
 
