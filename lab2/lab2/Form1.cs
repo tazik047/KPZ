@@ -209,7 +209,14 @@ namespace lab2
         {
             textBox2.Text = textBox3.Text;
             button2_Click(sender, e);
-            if (!isGood) return;
+            if (!isGood)
+            {
+                MessageBox.Show("Неизвестная лексима");
+                richTextBox1.Text = "";
+                richTextBox1.BackColor = Color.White;
+                textBox3.BackColor = Color.White;
+                return;
+            }
             var tuple = analyze(label2.Text + "#");
             bool res = tuple.Item1;
             richTextBox1.Text = "Проверка " + textBox3.Text + Environment.NewLine + tuple.Item2;
