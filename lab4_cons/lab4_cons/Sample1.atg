@@ -1,0 +1,16 @@
+COMPILER Sample
+CHARACTERS
+	digit = '0'..'9'.
+	letter = 'a'..'z'.
+	bigletter = 'A'..'Z'.
+TOKENS
+	number = digit {digit}.
+	ident = ( letter | bigletter ) { letter | bigletter }.
+IGNORE '\r' + '\n'
+PRODUCTIONS
+	Sample = {"calc" Expr}.
+	Expr = Term {'+' Term}.
+	Term = number.
+END Sample.
+
+

@@ -1,0 +1,23 @@
+COMPILER Sample
+CHARACTERS
+	letter = 'a'..'z'.
+	bigletter = 'A'..'Z'.
+	symbols = "&|^".
+TOKENS
+	ident = ( letter | bigletter ) { letter | bigletter }.
+	const = "0"|"1".
+	operat = symbols|"->".
+	neg = "!".
+IGNORE '\r' + '\n'
+PRODUCTIONS
+	Sample = {D '#'}.
+	D = M B.
+	B = operat M B | [].
+	M = neg P | P.
+	P = '(' D ')' | L | const.
+	L = ident Pred.
+	Pred = '(' InPred ')' | [].
+	InPred = D E.
+	E = ',' InPred | [].
+END Sample.
+
