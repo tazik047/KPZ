@@ -43,7 +43,7 @@ namespace lab2
             Regex r = new Regex("^" + Pattern);
             if (r.IsMatch(s))
             {
-                if (Id != 5)
+                if (Id != 6)
                     return r.Match(s).Value;
                 var str = r.Match(s).Value;
                 int firstIndex = str.IndexOf('(') + 1;

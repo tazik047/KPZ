@@ -65,9 +65,9 @@
             this.button2 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.button3 = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -239,7 +239,7 @@
             this.dataGridView2.Location = new System.Drawing.Point(2, 0);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersVisible = false;
-            this.dataGridView2.Size = new System.Drawing.Size(794, 271);
+            this.dataGridView2.Size = new System.Drawing.Size(794, 279);
             this.dataGridView2.TabIndex = 1;
             // 
             // CNumber
@@ -280,7 +280,7 @@
             this.dataGridView3.Location = new System.Drawing.Point(2, 0);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowHeadersVisible = false;
-            this.dataGridView3.Size = new System.Drawing.Size(797, 270);
+            this.dataGridView3.Size = new System.Drawing.Size(797, 278);
             this.dataGridView3.TabIndex = 1;
             // 
             // ONumber
@@ -321,7 +321,7 @@
             this.dataGridView5.Location = new System.Drawing.Point(2, 0);
             this.dataGridView5.Name = "dataGridView5";
             this.dataGridView5.RowHeadersVisible = false;
-            this.dataGridView5.Size = new System.Drawing.Size(795, 268);
+            this.dataGridView5.Size = new System.Drawing.Size(795, 276);
             this.dataGridView5.TabIndex = 0;
             // 
             // SNum
@@ -364,7 +364,7 @@
             this.dataGridView4.Name = "dataGridView4";
             this.dataGridView4.RowHeadersVisible = false;
             this.dataGridView4.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            this.dataGridView4.Size = new System.Drawing.Size(795, 271);
+            this.dataGridView4.Size = new System.Drawing.Size(795, 279);
             this.dataGridView4.TabIndex = 1;
             // 
             // PNumber
@@ -420,6 +420,18 @@
             this.tabPage8.Text = "Синтаксический анализатор";
             this.tabPage8.UseVisualStyleBackColor = true;
             // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.richTextBox1.Location = new System.Drawing.Point(8, 76);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ReadOnly = true;
+            this.richTextBox1.Size = new System.Drawing.Size(791, 313);
+            this.richTextBox1.TabIndex = 4;
+            this.richTextBox1.Text = "";
+            // 
             // button3
             // 
             this.button3.BackColor = System.Drawing.Color.AliceBlue;
@@ -437,17 +449,6 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(362, 29);
             this.textBox3.TabIndex = 2;
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBox1.Location = new System.Drawing.Point(8, 76);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(791, 313);
-            this.richTextBox1.TabIndex = 4;
-            this.richTextBox1.Text = "";
             // 
             // Form1
             // 

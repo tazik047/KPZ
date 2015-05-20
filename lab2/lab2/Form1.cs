@@ -209,7 +209,14 @@ namespace lab2
         {
             textBox2.Text = textBox3.Text;
             button2_Click(sender, e);
-            if (!isGood) return;
+            if (!isGood)
+            {
+                MessageBox.Show("Неизвестная лексима");
+                richTextBox1.Text = "";
+                richTextBox1.BackColor = Color.White;
+                textBox3.BackColor = Color.White;
+                return;
+            }
             var tuple = analyze(label2.Text + "#");
             bool res = tuple.Item1;
             richTextBox1.Text = "Проверка " + textBox3.Text + Environment.NewLine + tuple.Item2;
@@ -221,14 +228,16 @@ namespace lab2
                 //var temp = new string(param.ToArray());
                 var p = new List<string>();
                 int ind = 0;
-                while ((ind+5)<=param.Count)
+                int size = sizeLexeme(new string(param.ToArray()), ind);
+                while ((ind+size)<=param.Count)
                 {
-                    if(param.Count==(ind+5) || param[ind + 5]==','){
-                        p.Add(new string(param.Take(ind + 5).ToArray()));
-                        param = param.Skip(ind + 6).ToList();
+                    if(param.Count==(ind+size) || param[ind + size]==','){
+                        p.Add(new string(param.Take(ind + size).ToArray()));
+                        param = param.Skip(ind + size + 1).ToList();
                         ind = 0;
                     }
-                    ind += 5;
+                    ind += size;
+                    size = sizeLexeme(new string(param.ToArray()), ind);
                 }
                 if(param.Count!=0) p.Add(new string(param.ToArray()));
                 foreach (var temp1 in p)
@@ -244,16 +253,16 @@ namespace lab2
 
         private Tuple<bool, string> analyze(string text)
         {            
-            Stack<object> queue = new Stack<object>();
-            queue.Push(terminals[0]);
+            Stack<object> stack = new Stack<object>();
+            stack.Push(terminals[0]);
             int index = 0;
             StringBuilder log = new StringBuilder(), temp;
             StringBuilder left = new StringBuilder(Environment.NewLine);
             List<string> right = new List<string>{terminals[0].Name};
-            while (queue.Count != 0)
+            while (stack.Count != 0)
             {
                 Lexeme l = getLexeme(text, index);
-                object lex = queue.Pop();
+                object lex = stack.Pop();
                 right.RemoveAt(0);
                 if(l==null){
                     if(lex.Equals(Terminal.End))
@@ -263,7 +272,7 @@ namespace lab2
                 }
                 else if(l.Equals(lex)){
                     left.Append(l.Type + " ");
-                    index += 5;
+                    index += sizeLexeme(text, index);
                 }
                 else{
                     Terminal t = lex as Terminal;
@@ -273,7 +282,7 @@ namespace lab2
                     }
                     else if(!(next.Count==1 && (next[0] is Terminal) && (next[0].Equals(Terminal.Empty)))){
                         for(int i = next.Count - 1; i>=0; i--)
-                            queue.Push(next[i]);
+                            stack.Push(next[i]);
                         right.InsertRange(0, next.Select(o=>o.ToString()));
                     }
                 }
@@ -286,8 +295,17 @@ namespace lab2
         private Lexeme getLexeme(string text, int index)
         {
             if(text[index]=='#') return null;
-            int ind = text[index+1] - '0';
+            //int ind = text[index+1] - '0';
+            string temp = new string(text.Skip(index + 1).TakeWhile(c => c != ',').ToArray());
+            int ind = Convert.ToInt32(temp);
+            if (ind > 9)
+                ind = ind;
             return lexemes[ind-1];
+        }
+
+        private int sizeLexeme(string text, int index)
+        {
+            return  text.Skip(index).TakeWhile(c => c != ')').Count() + 1;
         }
     }
 }
