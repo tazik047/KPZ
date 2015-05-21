@@ -10,7 +10,7 @@ TOKENS
 	neg = "!".
 IGNORE '\r' + '\n'
 PRODUCTIONS
-	Sample = {D '#'}.
+	Sample = D '#'.
 	D = M B.
 	B = operat M B | [].
 	M = neg P | P.

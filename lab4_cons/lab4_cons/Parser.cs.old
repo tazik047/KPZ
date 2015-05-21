@@ -9,7 +9,7 @@ public class Parser {
 	public const int _const = 2;
 	public const int _operat = 3;
 	public const int _neg = 4;
-	public const int maxT = 10;
+	public const int maxT = 9;
 
 	const bool _T = true;
 	const bool _x = false;
@@ -99,7 +99,7 @@ public class Parser {
 			P();
 		} else if (la.kind == 1 || la.kind == 2 || la.kind == 6) {
 			P();
-		} else SynErr(11);
+		} else SynErr(10);
 	}
 
 	void B() {
@@ -107,10 +107,10 @@ public class Parser {
 			Get();
 			M();
 			B();
-		} else if (StartOf(2)) {
+		} else if (la.kind == 5 || la.kind == 7 || la.kind == 8) {
 			if (false) {
 			}
-		} else SynErr(12);
+		} else SynErr(11);
 	}
 
 	void P() {
@@ -122,7 +122,7 @@ public class Parser {
 			L();
 		} else if (la.kind == 2) {
 			Get();
-		} else SynErr(13);
+		} else SynErr(12);
 	}
 
 	void L() {
@@ -135,10 +135,10 @@ public class Parser {
 			Get();
 			InPred();
 			Expect(7);
-		} else if (StartOf(3)) {
+		} else if (StartOf(2)) {
 			if (false) {
 			}
-		} else SynErr(14);
+		} else SynErr(13);
 	}
 
 	void InPred() {
@@ -150,9 +150,10 @@ public class Parser {
 		if (la.kind == 8) {
 			Get();
 			InPred();
-		} else if (la.kind == 9) {
-			Get();
-		} else SynErr(15);
+		} else if (la.kind == 7) {
+			if (false) {
+			}
+		} else SynErr(14);
 	}
 
 
@@ -167,10 +168,9 @@ public class Parser {
 	}
 	
 	static readonly bool[,] set = {
-		{_T,_x,_x,_x, _x,_x,_x,_x, _x,_x,_x,_x},
-		{_x,_T,_T,_x, _T,_x,_T,_x, _x,_x,_x,_x},
-		{_x,_x,_x,_x, _x,_T,_x,_T, _T,_T,_x,_x},
-		{_x,_x,_x,_T, _x,_T,_x,_T, _T,_T,_x,_x}
+		{_T,_x,_x,_x, _x,_x,_x,_x, _x,_x,_x},
+		{_x,_T,_T,_x, _T,_x,_T,_x, _x,_x,_x},
+		{_x,_x,_x,_T, _x,_T,_x,_T, _T,_x,_x}
 
 	};
 } // end Parser
@@ -193,13 +193,12 @@ public class Errors {
 			case 6: s = "\"(\" expected"; break;
 			case 7: s = "\")\" expected"; break;
 			case 8: s = "\",\" expected"; break;
-			case 9: s = "\"\\0\" expected"; break;
-			case 10: s = "??? expected"; break;
-			case 11: s = "invalid M"; break;
-			case 12: s = "invalid B"; break;
-			case 13: s = "invalid P"; break;
-			case 14: s = "invalid Pred"; break;
-			case 15: s = "invalid E"; break;
+			case 9: s = "??? expected"; break;
+			case 10: s = "invalid M"; break;
+			case 11: s = "invalid B"; break;
+			case 12: s = "invalid P"; break;
+			case 13: s = "invalid Pred"; break;
+			case 14: s = "invalid E"; break;
 
 			default: s = "error " + n; break;
 		}

@@ -82,10 +82,8 @@ public class Parser {
 
 	
 	void Sample() {
-		while (StartOf(1)) {
-			D();
-			Expect(5);
-		}
+		D();
+		Expect(5);
 	}
 
 	void D() {
@@ -135,7 +133,7 @@ public class Parser {
 			Get();
 			InPred();
 			Expect(7);
-		} else if (StartOf(2)) {
+		} else if (StartOf(1)) {
 			if (false) {
 			}
 		} else SynErr(13);
@@ -169,7 +167,6 @@ public class Parser {
 	
 	static readonly bool[,] set = {
 		{_T,_x,_x,_x, _x,_x,_x,_x, _x,_x,_x},
-		{_x,_T,_T,_x, _T,_x,_T,_x, _x,_x,_x},
 		{_x,_x,_x,_T, _x,_T,_x,_T, _T,_x,_x}
 
 	};
