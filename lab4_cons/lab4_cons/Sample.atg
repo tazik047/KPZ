@@ -20,4 +20,3 @@ PRODUCTIONS
 	InPred = D E.
 	E = ',' InPred | [].
 END Sample.
-
